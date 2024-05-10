@@ -35,65 +35,79 @@ function generateUserId() {
 } // 
 
 // Functions related to simulating user interactions
-function simulateUserInteraction(simulationCount = 0) { // Add simulationCount as a parameter
-    if (simulationCount > 10) {
-        console.log("Simulation limit reached");
-        return; // Stop further simulations if the count exceeds 10
-    }
+// Defines a function to simulate user interactions, optional simulationCount to track iterations
+function simulateUserInteraction(simulationCount = 0) {
 
-    // Reset user data for a new session
+    // Generate a new user ID for a session and set it in the leaderboard
     let userName = generateUserId();
-    document.getElementById("leaderboard-name").value = userName;
-    document.getElementById("set-name").click();
+    document.getElementById("leaderboard-name").value = userName; // Set the generated user name in the leaderboard input field
+    document.getElementById("set-name").click(); // Trigger a click to update the leaderboard with the new user name
 
-    const targetClicks = Math.floor(Math.random() * 1000 + 500);
-    const fluctuation = Math.floor(targetClicks * (Math.random() * 0.4 + 0.1) + 1);
+    //  // Randomly set the target clicks between 300 and 3800
+    const targetClicks = Math.floor(Math.random() * 3500 + 300);
+    // Calculate fluctuation to vary the target clicks randomly between 15% and 30%
+    const fluctuation = Math.floor(targetClicks * (Math.random() * 0.15 + 0.15));
+    // Set the minimum number of acceptable clicks
     const minClicks = targetClicks - fluctuation;
+    // Set the maximum number of acceptable clicks
     const maxClicks = targetClicks + fluctuation;
+    // Initialize totalClicks to track the number of clicks made during the session
     let totalClicks = 0;
 
+    // Defines a function to simulate bursts of clicks
     function simulateClickBurst() {
-        const burstDuration = Math.floor(3000 * Math.random() + 1000);
-        let clicksPerBurst = Math.floor(Math.random() * 10 + 1);
+        // Randomly determine the duration of a burst between 1 to 8 seconds
+        const burstDuration = Math.floor(Math.random() * 8000 + 1000);
+        // Determine the number of clicks in this burst, between 1 and 40
+        let clicksPerBurst = Math.floor(Math.random() * 40 + 1);
+        // Calculate the interval between clicks in milliseconds
         let clickInterval = burstDuration / clicksPerBurst;
 
+        // Set a timer to perform clicks at determined intervals
         let burstTimer = setInterval(() => {
-            if (totalClicks < maxClicks) {
-                document.getElementById("increment-button").click();
-                totalClicks += 1;
+            if (totalClicks < maxClicks) { // Check if the max clicks are not yet reached
+                document.getElementById("increment-button").click(); // Simulate a click
+                totalClicks += 1; // Increment the total clicks counter
             } else {
-                clearInterval(burstTimer);
+                clearInterval(burstTimer); // Stop the burst if max clicks reached
             }
         }, clickInterval);
 
+        // Set a timeout to clear the burst timer and possibly initiate another burst
         setTimeout(() => {
-            clearInterval(burstTimer);
-            if (totalClicks < maxClicks) {
-                simulateClickBurst();
+            clearInterval(burstTimer); // Clear the current burst timer
+            if (totalClicks < maxClicks) { // Check if another burst is needed
+                simulateClickBurst(); // Initiate another burst
             }
         }, burstDuration);
     }
 
+    // Defines a function to manage the overall session timing and conditions
     function simulateSession() {
+        // Set a timer to monitor the session progress every 2 seconds
         let sessionTimer = setInterval(() => {
-            if (totalClicks >= minClicks && totalClicks <= maxClicks) {
+            if (totalClicks >= minClicks && totalClicks <= maxClicks) { // Check if the clicks are within the target range
                 console.log(`Target reached or exceeded within range: ${totalClicks} clicks`);
-                clearInterval(sessionTimer);
+                clearInterval(sessionTimer); // Stop the session timer when target is reached
+
+                // Recursively call the simulateUserInteraction to start a new session, incrementing the count
+                simulateUserInteraction(simulationCount + 1);
             }
         }, 2000);
 
+        // Set a timeout to end the session after 3 minutes regardless of click count
         setTimeout(() => {
-            clearInterval(sessionTimer);
-            if (totalClicks < minClicks || totalClicks > maxClicks) {
+            clearInterval(sessionTimer); // Clear the session timer
+            if (totalClicks < minClicks || totalClicks > maxClicks) { // Check if the clicks are out of target range
                 console.log("Session ended: out of target click range.");
             }
-            // Increment the simulation count and start a new session if conditions are met
-            simulateUserInteraction(simulationCount + 1);
-        }, 60000);
+        }, 180000); // End the session after 3 minutes
 
+        // Start the first burst of clicks
         simulateClickBurst();
     }
 
+    // Start the simulation session
     simulateSession();
 }
 
@@ -152,12 +166,12 @@ function createLeaderboardHtml(leaderboard) {
         .map(
             (entry, index) =>
                 `
-            <tr>
-              <td>${index + 1}</td>
-              <td>${entry.username}</td>
-              <td>${formatNumberWithCommas(entry.clicks)}</td>
-            </tr>
-          `,
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>${entry.username}</td>
+                  <td>${entry.clicks ? formatNumberWithCommas(entry.clicks) : 0}</td>
+                </tr>
+              `,
         )
         .join("");
 }
@@ -165,12 +179,11 @@ function createLeaderboardHtml(leaderboard) {
 function updateTotalClicks(total) {
     const totalClicksElement = document.getElementById("totalClicks");
     if (totalClicksElement) {
-        totalClicksElement.textContent = formatNumberWithCommas(total);
+        totalClicksElement.textContent = total ? formatNumberWithCommas(total) : 0;
     } else {
         console.error("Element with ID 'totalClicks' not found.");
     }
 }
-
 function updateLeaderboard(userClicks) {
     leaderboardRef.once("value", (snapshot) => {
         let leaderboard = snapshot.val() || [];
@@ -206,6 +219,6 @@ function formatNumberWithCommas(x) {
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         simulateUserInteraction();
-    }, 1000);
+    }, 5000);
 }
 );
