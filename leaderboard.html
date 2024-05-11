@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ7ZDQP4Y0"
+            type="71f85be4c9b8224ee1736640-text/javascript"></script>
+        <script type="71f85be4c9b8224ee1736640-text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-VZ7ZDQP4Y0');
+    </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description"
+            content="Winrar.ai - AI clicker game, challenge your clicking skills and get on the leaderboard" />
+        <meta name="keywords" content="AI, Winrar.ai, Clicker, Game, Leaderboard" />
+        <meta name="author" content="Winrar.ai Team" />
+        <title>Winrar.ai</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous" />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo.png" alt="WinRar.ai Logo" height="30" class="w-100 align-top" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="col-lg-6 mx-auto">
+            <div class="card border-2 shadow">
+                <div class="border-1">
+                    <h3 class="text-secondary">Leaderboard</h3>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="leaderboard-name" placeholder="" />
+                        <button class="btn btn-dark mt-2 w-100" id="set-name">
+                        </button>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Rank</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Clicks</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <button id="previousPage" class="btn btn-dark mt-2">Previous Page</button>
+                    <button id="nextPage" class="btn btn-dark mt-2">Next Page</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            // make the set-name and leaderboard-name hidden
+            document.getElementById("set-name").style.display = "none";
+            document.getElementById("leaderboard-name").style.display = "none";
+        </script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+        <script src="./js/index.js"></script>
+    </body>
+
+</html>

@@ -1,36 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
   <head>
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ7ZDQP4Y0"
       type="71f85be4c9b8224ee1736640-text/javascript"></script>
     <script type="71f85be4c9b8224ee1736640-text/javascript">
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-            gtag('config', 'G-VZ7ZDQP4Y0');
-        </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Winrar.ai - the future of AI-driven solutions. Stay tuned for our launch.">
-    <meta name="keywords" content="AI, Winrar.ai, Coming Soon, Technology, Innovation">
-    <meta name="author" content="Winrar.ai Team">
+      gtag('config', 'G-VZ7ZDQP4Y0');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+      content="Winrar.ai - AI clicker game, challenge your clicking skills and get on the leaderboard" />
+    <meta name="keywords" content="AI, Winrar.ai, Clicker, Game, Leaderboard" />
+    <meta name="author" content="Winrar.ai Team" />
     <title>Winrar.ai</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <style>
       body {
         background-size: cover;
       }
 
       h1 {
-        font-family: 'Rubik Mono One', sans-serif;
+        font-family: "Rubik Mono One", sans-serif;
       }
 
       #plusOne {
@@ -61,9 +61,30 @@
   </head>
 
   <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">WinRar.ai</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <header class="container text-center py-5">
       <h1 class="display-4 text-success">WinRar.ai</h1>
-      <p class="fst-italic text-success-emphasis">AI clicker game, challenge your clicking skills.</p>
+      <p class="fst-italic text-success-emphasis">
+        AI clicker game, challenge your clicking skills.
+      </p>
     </header>
     <main class="container text-center">
       <div class="row">
@@ -71,26 +92,35 @@
           <div class="card py-5 shadow">
             <div class="text-center position-relative">
               <h2 id="totalClicks" class="display-4 fw-bold">Loading...</h2>
-              <p class="card-text text-muted">Total clicks across the platform</p>
+              <p class="card-text text-muted">
+                Total clicks across the platform
+              </p>
               <span id="plusOne" class="text-success fw-bold offset-1">+1</span>
               <button id="increment-button" class="btn btn-warning shadow p-5 text-light rounded-pill">
                 <!-- white click icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 448 512">
                   <path
                     d="M128 40c0-22.1 17.9-40 40-40s40 17.9 40 40V188.2c8.5-7.6 19.7-12.2 32-12.2c20.6 0 38.2 13 45 31.2c8.8-9.3 21.2-15.2 35-15.2c25.3 0 46 19.5 47.9 44.3c8.5-7.7 19.8-12.3 32.1-12.3c26.5 0 48 21.5 48 48v48 16 48c0 70.7-57.3 128-128 128l-16 0H240l-.1 0h-5.2c-5 0-9.9-.3-14.7-1c-55.3-5.6-106.2-34-140-79L8 336c-13.3-17.7-9.7-42.7 8-56s42.7-9.7 56 8l56 74.7V40zM240 304c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304zm48-16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304c0-8.8-7.2-16-16-16zm80 16c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304z" />
-                </svg> </button>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
-        <div class=" col-lg-6 mx-auto">
+        <div class="col-lg-6 mx-auto">
           <div class="card border-2 shadow">
             <div class="border-1">
               <h3 class="text-secondary">Leaderboard</h3>
-              <p class="text-muted mb-2">Enter your name to join the leaderboard:</p>
-              <p class="small badge fst-italic text-bg-primary text-wrap">AI will click for you after 5 seconds</p>
+              <p class="text-muted mb-2">
+                Enter your name to join the leaderboard:
+              </p>
+              <p class="small badge fst-italic text-bg-primary text-wrap">
+                AI will click for you after 5 seconds
+              </p>
               <div class="mb-3">
-                <input type="text" class="form-control" id="leaderboard-name" placeholder="Enter your name">
-                <button class="btn btn-dark mt-2 w-100" id="set-name">Set Name</button>
+                <input type="text" class="form-control" id="leaderboard-name" placeholder="Enter your name" />
+                <button class="btn btn-dark mt-2 w-100" id="set-name">
+                  Set Name
+                </button>
               </div>
               <table class="table table-striped">
                 <thead class="table-light">
@@ -100,8 +130,7 @@
                     <th scope="col">Clicks</th>
                   </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           </div>
@@ -110,15 +139,18 @@
     </main>
 
     <script>
-      document.getElementById('increment-button').addEventListener('click', function () {
-        var plusOne = document.getElementById('plusOne');
-        plusOne.style.animation = 'none';
-        plusOne.style.opacity = '1'; /* Show when button is clicked */
-        setTimeout(function () {
-          plusOne.style.animation = 'plusOne 0.5s linear'; /* Reduce animation duration to 0.5s */
-          plusOne.style.opacity = '0'; /* Hide after animation */
-        }, 10);
-      });
+      document
+        .getElementById("increment-button")
+        .addEventListener("click", function () {
+          var plusOne = document.getElementById("plusOne");
+          plusOne.style.animation = "none";
+          plusOne.style.opacity = "1"; /* Show when button is clicked */
+          setTimeout(function () {
+            plusOne.style.animation =
+              "plusOne 0.5s linear"; /* Reduce animation duration to 0.5s */
+            plusOne.style.opacity = "0"; /* Hide after animation */
+          }, 10);
+        });
     </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>

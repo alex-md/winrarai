@@ -24,20 +24,22 @@ if (incrementButton) {
 
 // Generate user ID with realistic username
 function generateUserId() {
-    let vowels = 'aeiou';
-    let consonants = 'bcdfghjklmnpqrstvwxyz';
-    let userId = '';
+    let vowels = "aeiou";
+    let consonants = "bcdfghjklmnpqrstvwxyz";
+    let userId = "";
     let length = Math.floor(Math.random() * 9 + 4);
     for (let i = 0; i < length; i++) {
-        userId += i % 2 === 0 ? consonants[Math.floor(Math.random() * consonants.length)] : vowels[Math.floor(Math.random() * vowels.length)];
+        userId +=
+            i % 2 === 0
+                ? consonants[Math.floor(Math.random() * consonants.length)]
+                : vowels[Math.floor(Math.random() * vowels.length)];
     }
     return userId;
-} // 
+} //
 
 // Functions related to simulating user interactions
 // Defines a function to simulate user interactions, optional simulationCount to track iterations
 function simulateUserInteraction(simulationCount = 0) {
-
     // Generate a new user ID for a session and set it in the leaderboard
     let userName = generateUserId();
     document.getElementById("leaderboard-name").value = userName; // Set the generated user name in the leaderboard input field
@@ -65,7 +67,8 @@ function simulateUserInteraction(simulationCount = 0) {
 
         // Set a timer to perform clicks at determined intervals
         let burstTimer = setInterval(() => {
-            if (totalClicks < maxClicks) { // Check if the max clicks are not yet reached
+            if (totalClicks < maxClicks) {
+                // Check if the max clicks are not yet reached
                 document.getElementById("increment-button").click(); // Simulate a click
                 totalClicks += 1; // Increment the total clicks counter
             } else {
@@ -76,7 +79,8 @@ function simulateUserInteraction(simulationCount = 0) {
         // Set a timeout to clear the burst timer and possibly initiate another burst
         setTimeout(() => {
             clearInterval(burstTimer); // Clear the current burst timer
-            if (totalClicks < maxClicks) { // Check if another burst is needed
+            if (totalClicks < maxClicks) {
+                // Check if another burst is needed
                 simulateClickBurst(); // Initiate another burst
             }
         }, burstDuration);
@@ -86,8 +90,11 @@ function simulateUserInteraction(simulationCount = 0) {
     function simulateSession() {
         // Set a timer to monitor the session progress every 2 seconds
         let sessionTimer = setInterval(() => {
-            if (totalClicks >= minClicks && totalClicks <= maxClicks) { // Check if the clicks are within the target range
-                console.log(`Target reached or exceeded within range: ${totalClicks} clicks`);
+            if (totalClicks >= minClicks && totalClicks <= maxClicks) {
+                // Check if the clicks are within the target range
+                console.log(
+                    `Target reached or exceeded within range: ${totalClicks} clicks`,
+                );
                 clearInterval(sessionTimer); // Stop the session timer when target is reached
 
                 // Recursively call the simulateUserInteraction to start a new session, incrementing the count
@@ -98,7 +105,8 @@ function simulateUserInteraction(simulationCount = 0) {
         // Set a timeout to end the session after 3 minutes regardless of click count
         setTimeout(() => {
             clearInterval(sessionTimer); // Clear the session timer
-            if (totalClicks < minClicks || totalClicks > maxClicks) { // Check if the clicks are out of target range
+            if (totalClicks < minClicks || totalClicks > maxClicks) {
+                // Check if the clicks are out of target range
                 console.log("Session ended: out of target click range.");
             }
         }, 180000); // End the session after 3 minutes
@@ -166,12 +174,12 @@ function createLeaderboardHtml(leaderboard) {
         .map(
             (entry, index) =>
                 `
-                <tr>
-                  <td>${index + 1}</td>
-                  <td>${entry.username}</td>
-                  <td>${entry.clicks ? formatNumberWithCommas(entry.clicks) : 0}</td>
-                </tr>
-              `,
+                  <tr>
+                    <td>${index + 1}</td>
+                    <td>${entry.username}</td>
+                    <td>${entry.clicks ? formatNumberWithCommas(entry.clicks) : 0}</td>
+                  </tr>
+                `,
         )
         .join("");
 }
@@ -203,13 +211,13 @@ function updateLeaderboard(userClicks) {
         leaderboard.sort((a, b) => b.clicks - a.clicks);
         leaderboard = leaderboard.slice(0, 10);
         leaderboardRef.set(leaderboard);
-
-        if (leaderboardTable) {
-            leaderboardTable.innerHTML = createLeaderboardHtml(leaderboard);
-        } else {
-            console.error("Leaderboard table element not found.");
-        }
     });
+
+    if (leaderboardTable) {
+        leaderboardTable.innerHTML = createLeaderboardHtml(leaderboard);
+    } else {
+        console.error("Leaderboard table element not found.");
+    }
 }
 
 function formatNumberWithCommas(x) {
@@ -220,5 +228,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         simulateUserInteraction();
     }, 5000);
-}
-);
+
+    leaderboardRef.on("value", (snapshot) => {
+        let leaderboard = snapshot.val() || [];
+        leaderboard.sort((a, b) => b.clicks - a.clicks);
+        leaderboard = leaderboard.slice(0, 10);
+        if (leaderboardTable) {
+            leaderboardTable.innerHTML = createLeaderboardHtml(leaderboard);
+        } else {
+            console.error("Leaderboard table element not found.");
+        }
+    });
+});
