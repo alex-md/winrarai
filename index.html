@@ -57,6 +57,15 @@
       svg {
         fill: #fde022;
       }
+
+      #pagination {
+        margin-top: 10px;
+      }
+
+      #previousPage,
+      #nextPage {
+        display: none;
+      }
     </style>
   </head>
 
@@ -132,6 +141,10 @@
                 </thead>
                 <tbody></tbody>
               </table>
+              <div id="pagination" class="d-flex justify-content-between">
+                <button id="previousPage" class="btn btn-secondary">&larr; Previous</button>
+                <button id="nextPage" class="btn btn-secondary">Next &rarr;</button>
+              </div>
             </div>
           </div>
         </div>

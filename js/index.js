@@ -35,7 +35,12 @@ function generateUserId() {
                 : vowels[Math.floor(Math.random() * vowels.length)];
     }
     return userId;
-} //
+}
+
+function generateUsername(userId) {
+    // Placeholder function, implement according to requirements
+    return `User_${userId}`;
+}
 
 // Functions related to simulating user interactions
 // Defines a function to simulate user interactions, optional simulationCount to track iterations
@@ -194,6 +199,8 @@ function updateTotalClicks(total) {
 }
 function updateLeaderboard(userClicks) {
     leaderboardRef.once("value", (snapshot) => {
+        console.log("Raw leaderboard data:", snapshot.val());
+
         let leaderboard = snapshot.val() || [];
         let userEntry = leaderboard.find(
             (entry) => entry.id === userId && entry.username === userName,
