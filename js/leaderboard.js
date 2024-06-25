@@ -20,7 +20,7 @@ let leaderboardRef = database.ref("clicks/leaderboard");
 // Variables
 let userName;
 let userId = generateUserId();
-let pageSize = 10;
+let pageSize = 50;
 let currentPage = 0;
 let leaderboard = [];
 
@@ -71,20 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
     totalClicksRef.on("value", (snapshot) => {
         updateTotalClicks(snapshot.val() || 0);
     });
-
-    // Functions
-    function generateUserId() {
-        let vowels = "aeiou";
-        let consonants = "bcdfghjklmnpqrstvwxyz";
-        let userId = "";
-        let length = Math.floor(Math.random() * 9 + 4);
-        for (let i = 0; i < length; i++) {
-            userId += i % 2 === 0
-                ? consonants[Math.floor(Math.random() * consonants.length)]
-                : vowels[Math.floor(Math.random() * vowels.length)];
-        }
-        return userId;
-    }
 
     function incrementCounter() {
         const userClicksRef = database.ref(`clicks/users/${userId}`);
